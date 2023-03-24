@@ -1,5 +1,5 @@
 public class Member {
-    @SuppressWarnings("never used")
+
     public int id;
     public String name;
 
@@ -19,7 +19,7 @@ public class Member {
         this.name = name;
         this.country = country;
         this.time = time;
-        Race.members.add(this);
+        ListMembers.members.add(this);
     }
 
     Member(String name, String country){
@@ -27,7 +27,7 @@ public class Member {
         this.name = name;
         this.country = country;
         this.id = membersCount;
-        Race.members.add(this);
+        ListMembers.members.add(this);
     }
 
     public String getTime() {
@@ -61,21 +61,19 @@ public class Member {
     public void setTime(String time) {
         this.time = time;
     }
-    // 1.42.53
     public float getRealTime(String time) {
-        String t[] = time.split(":");
+        String[] t = time.split(":");
 
         String m = t[0];
         String sec = t[1];
         String ms = "0." + t[2];
-        ms.length();
 
         if (Integer.parseInt(sec) >= 60) {
-            System.out.println("Время введено с ошибкой! Попробуйте снова");
+            System.out.println("Кол-во секунд не может быть больше или равным 60! Попробуйте снова");
             return 0f;
         }
         if ((Float.parseFloat(ms) > 0.99) || ms.length() > 4) {
-            System.out.println("Время введено с ошибкой! Попробуйте снова");
+            System.out.println("кол-во милисекунд не может иметь больше двух знаков после запятой Попробуйте снова");
             return 0f;
         }
 
@@ -83,14 +81,13 @@ public class Member {
         float secs = Float.parseFloat(sec);
         float mss = Float.parseFloat(ms);
 
-        secs += min * 60 + mss;
-        this.realtime = secs;
-        return secs;
+
+        this.realtime = secs + (min * 60) + mss;
+        return this.realtime;
     }
 
     public String getInfo(){
-        String s = "Идентификатор:" + Integer.toString(this.id) + "\n Имя:" +  this.getName() + "\n Страна:" +  this.getCountry();
-        return s;
+        return "Идентификатор:" + this.id + "\n Имя:" +  this.getName() + "\n Страна:" +  this.getCountry();
     }
 
 }
