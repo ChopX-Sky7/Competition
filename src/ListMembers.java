@@ -11,7 +11,7 @@ public class ListMembers {
     private final static Scanner in = new Scanner(System.in);
 
     private static String dummy ="";
-    public static void add(int count) throws InputMismatchException {
+    public static void add(int count) {
         if (count == 0) {
             System.out.println("Число участников не может быть равным нулю!");
             return;
@@ -48,7 +48,7 @@ public class ListMembers {
 
     public static void printTXT() {
         File txt = new File("data/members.txt");
-
+        dummy = "Кол-во участников: " + Integer.toString(members.size()) + "\n";
         for (Member member : members) {
             dummy += member.getInfo() + "\n";
         }
