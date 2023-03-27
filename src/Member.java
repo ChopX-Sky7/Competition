@@ -1,15 +1,13 @@
 public class Member {
 
-    public int id;
-    public String name;
+    private int id;
+    private String name;
 
-    public String country;
+    private String country;
 
-    public String time;
+    private String time;
 
-    public float realtime;
-
-    public int place;
+    private int place;
 
     private static int membersCount;
 
@@ -82,12 +80,18 @@ public class Member {
         float mss = Float.parseFloat(ms);
 
 
-        this.realtime = secs + (min * 60) + mss;
-        return this.realtime;
+        return secs + (min * 60) + mss;
     }
 
     public String getInfo(){
         return "Идентификатор:" + this.id + "\n Имя:" +  this.getName() + "\n Страна:" +  this.getCountry();
+    }
+
+    public String[] getInfoArray(){
+        String name = this.getName();
+        String id = Integer.toString(this.getId());
+        String country = this.getCountry();
+        return new String[]{id, name, country};
     }
 
 }
